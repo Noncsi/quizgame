@@ -9,5 +9,5 @@ mat-grid-tile {
 
 button {
 min-block-size: -webkit-fill-available;
-inline-size: -webkit-fill-available;
+flex: auto;
 }
