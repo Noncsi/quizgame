@@ -1,0 +1,12 @@
+header, .row {
+    display: flex;
+    height: 40px;
+  }
+  
+  .col, .cell, .category {
+    flex: 1;
+  }
+
+  .col, .cell {
+    text-align: center;
+  }
