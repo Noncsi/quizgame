@@ -1,13 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: darkgray; }
 
 mat-grid-tile {
     background: lightblue;
   }
 
-button {
+.question-button {
 min-block-size: -webkit-fill-available;
 flex: auto;
+}
+
+.player-container {
+  display:flex
+}
+
+.player {
+  background-color: rgb(231, 231, 231)
+}
+
+.active-player {
+  background-color: rgb(119, 223, 93)
 }

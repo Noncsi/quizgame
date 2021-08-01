@@ -1,3 +1,69 @@
+
+<div class="player-container">
+  <mat-card *ngFor="let player of players" class="player"
+    [ngClass]="{'active-player' : player.isActive }">
+    <mat-card-header>
+      <mat-card-title>{{player.name}}</mat-card-title>
+      <mat-card-subtitle>Sorrend: {{player.order}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-subtitle>Pontszám: {{player.points}}</mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<button mat-button (click)="nextPlayer()">Következő játékos</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- category name -->
+  <ng-container matColumnDef="category-name">
+    <th mat-header-cell *matHeaderCellDef> Kategória </th>
+    <td mat-cell *matCellDef="let category">{{category.name}} </td>
+  </ng-container>
+
+  <!-- level 1 -->
+  <ng-container matColumnDef="level1">
+    <th mat-header-cell *matHeaderCellDef> Nehézség 1. </th>
+    <td mat-cell *matCellDef="let category" (click)=shoot(category.question1.id)> ? </td>
+  </ng-container>
+
+  <!-- level 2 -->
+  <ng-container matColumnDef="level2">
+    <th mat-header-cell *matHeaderCellDef> Nehézség 2. </th>
+    <td mat-cell *matCellDef="let category" (click)=shoot(category.question2.id)> ? </td>
+  </ng-container>
+
+  <!-- level 3 -->
+  <ng-container matColumnDef="level3">
+    <th mat-header-cell *matHeaderCellDef> Nehézség 3. </th>
+    <td mat-cell *matCellDef="let category" (click)=shoot(category.question3.id)> ? </td>
+  </ng-container>
+
+  <!-- level 4 -->
+  <ng-container matColumnDef="level4">
+    <th mat-header-cell *matHeaderCellDef> Nehézség 4. </th>
+    <td mat-cell *matCellDef="let category" (click)=shoot(category.question4.id)> ? </td>
+  </ng-container>
+
+  <!-- level 5 -->
+  <ng-container matColumnDef="level5">
+    <th mat-header-cell *matHeaderCellDef> Nehézség 5. </th>
+    <td mat-cell *matCellDef="let category" (click)=shoot(category.question5.id)> ? </td>
+  </ng-container>
+
+  <!-- level 6 -->
+  <ng-container matColumnDef="level6">
+    <th mat-header-cell *matHeaderCellDef> Nehézség 6. </th>
+    <td mat-cell *matCellDef="let category" (click)=shoot(category.question6.id)> ? </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+<!-- 
 <mat-grid-list cols="7" rowHeight="2:1">
   <mat-grid-tile></mat-grid-tile>
   <mat-grid-tile>Nehézség: 1</mat-grid-tile>
@@ -8,10 +74,6 @@
   <mat-grid-tile>Nehézség: 6</mat-grid-tile>
 
   <mat-grid-tile>Kategória 1</mat-grid-tile>
-  <mat-grid-tile><button mat-button (click)="shoot(11)">?</button></mat-grid-tile>
-  <mat-grid-tile><button mat-button (click)="shoot(12)">?</button></mat-grid-tile>
-  <mat-grid-tile><button mat-button (click)="shoot(13)">?</button></mat-grid-tile>
-  <mat-grid-tile><button mat-button (click)="shoot(14)">?</button></mat-grid-tile>
-  <mat-grid-tile><button mat-button (click)="shoot(15)">?</button></mat-grid-tile>
-  <mat-grid-tile><button mat-button (click)="shoot(16)">?</button></mat-grid-tile>
-</mat-grid-list>
+  <mat-grid-tile *ngFor="let question of questions"><button mat-button
+      class="question-button" (click)="shoot(question.id)">?</button></mat-grid-tile>
+</mat-grid-list> -->
