@@ -67,9 +67,9 @@ export class AppComponent {
     const q = this.questions.find((q) => q.id === id)
     const dialogRef = this.dialog.open(QuestionDialogComponent, {
       data: {
-        title: q.id, 
+        id: q.id, 
         question: q.question, 
-        answer: q.correctAnswer}
+        answer: q.answer}
     });
 
     dialogRef.afterClosed().subscribe(result => {
