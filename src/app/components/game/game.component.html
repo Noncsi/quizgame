@@ -1,0 +1,45 @@
+<div cdkDropList class="player-container" (cdkDropListDropped)="drop($event)" [ngClass]="{'ingame-player-container' : hasGameStarted }">
+  <mat-card  cdkDrag class="player" *ngFor="let player of players" [ngClass]="{'active-player' : player.isActive }" [cdkDragDisabled]='hasGameStarted'>
+  <h2>{{player.name}}</h2>
+    <h3>Pontszám: {{player.points}}</h3>
+    <button *ngIf="!hasGameStarted" mat-button (click)='deletePlayer(player)'>Törlés</button>
+  </mat-card>
+</div>
+<div *ngIf="!hasGameStarted">
+  <div class='add-player'>
+    <mat-label>Játékos neve</mat-label>
+    <input #playerName>
+    <button mat-raised-button (click)="addNewPlayer(playerName.value)">Hozzáadás</button>
+  </div>
+  <button mat-button [disabled]="players.length == 0" (click)="startGame()">Játék kezdése</button>
+</div>
+
+<div *ngIf="hasGameStarted">
+  <button mat-raised-button color="primary" id='btn-next-player'(click)="nextPlayer()">Következő játékos</button>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
+      <th mat-header-cell *matHeaderCellDef> Nehézség {{column}}. </th>
+      <td mat-cell *matCellDef="let category">
+        <button mat-button class="question-button"
+          (click)="shoot(category.id+'.'+column, QuestionType.basic)">?
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <h3 mat-label>Zászló</h3>
+  <button mat-raised-button [disabled]="duplicateOfFlags.length == 0"
+    id="flagButton" color='primary'
+    (click)='shoot(null, QuestionType.flag)'>Sorsolj</button>
+  <button mat-raised-button (click)='resetList()'>Lista visszaállítása</button>
+  
+  <h3 mat-label>Zeneszám</h3>
+  <button mat-raised-button color='primary' (click)='loadRandomTrackFromPlaylist()'>Zeneszám
+    betöltése</button>
+  <button mat-raised-button color='primary' (click)='shoot(null, QuestionType.song)'>Zeneszám
+    lejátszása</button>
+</div>

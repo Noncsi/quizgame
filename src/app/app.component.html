@@ -1,79 +1,14 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button matTooltip="
+    Játékszabály: Az első játékos dob egy hatoldalú kockával. Amilyen számot dobott, olyan nehézségű kérdést fog kapni. A kategóriát ő választja. (A kategóriák témái gyakran nem egyérelműek a nevükből. A játék része, hogy az elején sok meglepetés legyen). 
+    A játékvezető felteszi a kérdést a játékosnak. A válaszadásra 15 másodperce van (Kivéve a '2 betű 5 másodperc' nevű kategóriában, ahol 5 másodperce van). Ha sikerült a válaszadás, annyi pontot kap, amilyen nehézségű volt a kérdés. 
+    A kérdést töröljük a játékból, más játékos már nem játszhatja ki ugyanazt a nehézséget ugyanabban a kategóriában. Jó válasz esetén ha szeretne még pontot szerezni a körében, játszhat egy kör 'Találd ki a dalt az első 2 másodperce alapján!', vagy 'Melyik ország zászlaja ez?-t?' 
+    Ha sikerül a játékosnak kitalálnia, kap 2 pontot. Ha nem, veszít 4-et.
+    A játéknak akkor van vége, ha az összes kérdés meg lett játszva. A játékot az nyeri, akinek a legtöbb pontja van.">
+    <mat-icon>info</mat-icon>
+    </button>
 
-<div class="player-container">
-  <mat-card *ngFor="let player of players" class="player"
-    [ngClass]="{'active-player' : player.isActive }">
-    <mat-card-header>
-      <mat-card-title>{{player.name}}</mat-card-title>
-      <mat-card-subtitle>Sorrend: {{player.order}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-card-subtitle>Pontszám: {{player.points}}</mat-card-subtitle>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<button mat-button (click)="nextPlayer()">Következő játékos</button>
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- category name -->
-  <ng-container matColumnDef="category-name">
-    <th mat-header-cell *matHeaderCellDef> Kategória </th>
-    <td mat-cell *matCellDef="let category">{{category.name}} </td>
-  </ng-container>
-
-  <!-- level 1 -->
-  <ng-container matColumnDef="level1">
-    <th mat-header-cell *matHeaderCellDef> Nehézség 1. </th>
-    <td mat-cell *matCellDef="let category" (click)=shoot(category.question1.id)> ? </td>
-  </ng-container>
-
-  <!-- level 2 -->
-  <ng-container matColumnDef="level2">
-    <th mat-header-cell *matHeaderCellDef> Nehézség 2. </th>
-    <td mat-cell *matCellDef="let category" (click)=shoot(category.question2.id)> ? </td>
-  </ng-container>
-
-  <!-- level 3 -->
-  <ng-container matColumnDef="level3">
-    <th mat-header-cell *matHeaderCellDef> Nehézség 3. </th>
-    <td mat-cell *matCellDef="let category" (click)=shoot(category.question3.id)> ? </td>
-  </ng-container>
-
-  <!-- level 4 -->
-  <ng-container matColumnDef="level4">
-    <th mat-header-cell *matHeaderCellDef> Nehézség 4. </th>
-    <td mat-cell *matCellDef="let category" (click)=shoot(category.question4.id)> ? </td>
-  </ng-container>
-
-  <!-- level 5 -->
-  <ng-container matColumnDef="level5">
-    <th mat-header-cell *matHeaderCellDef> Nehézség 5. </th>
-    <td mat-cell *matCellDef="let category" (click)=shoot(category.question5.id)> ? </td>
-  </ng-container>
-
-  <!-- level 6 -->
-  <ng-container matColumnDef="level6">
-    <th mat-header-cell *matHeaderCellDef> Nehézség 6. </th>
-    <td mat-cell *matCellDef="let category" (click)=shoot(category.question6.id)> ? </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-
-
-<!-- 
-<mat-grid-list cols="7" rowHeight="2:1">
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile>Nehézség: 1</mat-grid-tile>
-  <mat-grid-tile>Nehézség: 2</mat-grid-tile>
-  <mat-grid-tile>Nehézség: 3</mat-grid-tile>
-  <mat-grid-tile>Nehézség: 4</mat-grid-tile>
-  <mat-grid-tile>Nehézség: 5</mat-grid-tile>
-  <mat-grid-tile>Nehézség: 6</mat-grid-tile>
-
-  <mat-grid-tile>Kategória 1</mat-grid-tile>
-  <mat-grid-tile *ngFor="let question of questions"><button mat-button
-      class="question-button" (click)="shoot(question.id)">?</button></mat-grid-tile>
-</mat-grid-list> -->
+    <span>Quizgame</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+<router-outlet></router-outlet>
