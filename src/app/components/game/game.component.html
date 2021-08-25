@@ -1,6 +1,8 @@
-<div cdkDropList class="player-container" (cdkDropListDropped)="drop($event)" [ngClass]="{'ingame-player-container' : hasGameStarted }">
-  <mat-card  cdkDrag class="player" *ngFor="let player of players" [ngClass]="{'active-player' : player.isActive }" [cdkDragDisabled]='hasGameStarted'>
-  <h2>{{player.name}}</h2>
+<div cdkDropList class="player-container" (cdkDropListDropped)="drop($event)"
+  [class.ingame-player-container]="hasGameStarted">
+  <mat-card cdkDrag class="player" *ngFor="let player of players"
+    [class.active-player]="player.isActive" [cdkDragDisabled]='hasGameStarted'>
+    <h2>{{player.name}}</h2>
     <h3>Pontszám: {{player.points}}</h3>
     <button *ngIf="!hasGameStarted" mat-button (click)='deletePlayer(player)'>Törlés</button>
   </mat-card>
@@ -11,18 +13,24 @@
     <input #playerName>
     <button mat-raised-button (click)="addNewPlayer(playerName.value)">Hozzáadás</button>
   </div>
-  <button mat-button [disabled]="players.length == 0" (click)="startGame()">Játék kezdése</button>
+  <button mat-button [disabled]="players.length == 0" (click)="startGame()">Játék
+    kezdése</button>
 </div>
 
 <div *ngIf="hasGameStarted">
-  <button mat-raised-button color="primary" id='btn-next-player'(click)="nextPlayer()">Következő játékos</button>
+  <button mat-raised-button color="primary"
+    id='btn-next-player'(click)="nextPlayer()">Következő játékos</button>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
-      <th mat-header-cell *matHeaderCellDef> Nehézség {{column}}. </th>
+    <ng-container *ngFor="let column of displayedColumns"
+      matColumnDef="{{column}}">
+      <th mat-header-cell *matHeaderCellDef>{{column}}</th>
       <td mat-cell *matCellDef="let category">
-        <button mat-button class="question-button"
-          (click)="shoot(category.id+'.'+column, '0')">?
+        <button mat-button class="question-button" [disabled]="column == displayedColumns[0] 
+        || category.numberOfUnansweredQuestions(column) == 0"
+          (click)="shoot(category.id + '.' + column, '0')"> {{ column ==
+          displayedColumns[0] ? category.name : '? ' +
+          '(' + category.numberOfUnansweredQuestions(column) + ')'}}
         </button>
       </td>
     </ng-container>
@@ -36,9 +44,9 @@
     id="flagButton" color='primary'
     (click)="shoot(null, '1')">Sorsolj</button>
   <button mat-raised-button (click)='resetList()'>Lista visszaállítása</button>
-  
   <h3 mat-label>Zeneszám</h3>
-  <button mat-raised-button color='primary' (click)='loadRandomTrackFromPlaylist()'>Zeneszám
+  <button mat-raised-button color='primary'
+    (click)='loadRandomTrackFromPlaylist()'>Zeneszám
     betöltése</button>
   <button mat-raised-button color='primary' (click)="shoot(null, '2')">Zeneszám
     lejátszása</button>

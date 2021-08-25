@@ -30,7 +30,6 @@ export const flags : Flag[] = [
     new Flag('GE', 'Georgia', 'Europe'),
     new Flag('GR', 'Greece', 'Europe'),
     new Flag('HR', 'Croatia', 'Europe'),
-    new Flag('HU', 'Hungary', 'Europe'),
     new Flag('IE', 'Ireland', 'Europe'),
     new Flag('IS', 'Iceland', 'Europe'),
     new Flag('IT', 'Italy', 'Europe'),
