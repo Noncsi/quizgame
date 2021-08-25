@@ -24,11 +24,12 @@ export class GameComponent {
 
   QuestionType = QuestionType
   players = players
-  displayedColumns: string[] = ['1', '2', '3', '4', '5', '6'];
+  displayedColumns: string[] = ['Kategória', '1', '2', '3'];
   dataSource = categories;
   currentQuestionType: string;
 
   newPlayerName: string = '';
+  currentPlayer: Player;
 
   // spotify
   accessToken;
@@ -55,7 +56,6 @@ export class GameComponent {
   addNewPlayer(name: string) {
     const newPlayer = new Player(this.players.length, name, 0, false)
     this.players.push(newPlayer);
-    
   }
 
   deletePlayer(player: Player) {
@@ -72,17 +72,15 @@ export class GameComponent {
   startGame() {
     this.hasGameStarted = true;
     players[0].isActive = true;
+    this.currentPlayer = players[0];
   }
 
   nextPlayer() {
-    const currentPlayer = players.find((p) => p.isActive)
-    let nextPlayerIndex = players.indexOf(currentPlayer) + 1
-    if (nextPlayerIndex >= players.length) {
-      nextPlayerIndex = 0;
-    }
-    currentPlayer.isActive = false;
-    const nextPlayer = players[nextPlayerIndex];
+    const idx = players.indexOf(this.currentPlayer);
+    players[idx] = { ...players[idx], isActive: false };
+    const nextPlayer = idx + 1 >= players.length ? players[0] : players[idx + 1]
     nextPlayer.isActive = true;
+    this.currentPlayer = nextPlayer;
   }
 
   // Quizgame_HUN_TEST: 2Eh2Qd3GiklW9N2qfhDFde
@@ -104,17 +102,27 @@ export class GameComponent {
 
   // QUESTION
   shoot(categoryAndLevel: string, type: string) {
-    let questionData: any = { currentQuestionType: type }
+    let questionData: any = { 
+      currentQuestionType: type,
+      pointsForCorrectAnswer: 0
+    };
+    let questionLevel;
+
     switch (parseInt(type)) {
       case QuestionType.basic: {
-        const coordinate = categoryAndLevel.split('.',2)
+        const coordinate = categoryAndLevel.split('.', 2)
         const category = categories.find((c) => c.id == parseInt(coordinate[0]))
-        const q = category.questions.find((q) => q.level === parseInt(coordinate[1]))
-        questionData = {
-          ...questionData,
-          question: q.question,
-          answer: q.answer,
-          id: q.id
+        questionLevel = parseInt(coordinate[1])
+        const questionsInLevel = category.questions.filter((q) => q.level === questionLevel && q.answeredBy === null)
+        if (questionsInLevel.length > 0) {
+          const random = Math.floor(Math.random() * questionsInLevel.length)
+          const randomQuestion = questionsInLevel[random];
+          questionData = {
+            ...questionData,
+            question: randomQuestion.question,
+            answer: randomQuestion.answer,
+            id: randomQuestion.id
+          }
         }
         break;
       }
@@ -142,12 +150,37 @@ export class GameComponent {
     }
 
     const dialogRef = this.dialog.open(QuestionDialogComponent, {
-      data: questionData,
+      data: questionData
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const currentPlayer = this.players.find((p) => p.isActive)
-        currentPlayer.points++
+        if (result === "correct" || result === "reroll") {
+          switch (parseInt(questionData.currentQuestionType)) {
+            case QuestionType.basic:
+              const cat = categories.find((c)=> c.id === parseInt(questionData.id.toString()[0])) // first numeric of question id === category id
+              const question = cat.questions.find((c) => c.id == questionData.id)
+              question.answeredBy = this.currentPlayer;
+              switch (questionLevel) {
+                case 1:
+                  this.currentPlayer.points += 1;
+                break;
+                case 2:
+                  this.currentPlayer.points += 3;
+                break;
+                case 3:
+                  this.currentPlayer.points += 5;
+                break;
+            case QuestionType.flag:
+              break;
+
+            case QuestionType.song:
+              break;
+            }
+          }
+        }
+        console.log(`question with id:${questionData.id} was answered ${result}ly by ${this.currentPlayer.name}.`)
+      } else {
+        console.log(`question with id:${questionData.id} was opened, but not answered.`)
       }
     });
   }
