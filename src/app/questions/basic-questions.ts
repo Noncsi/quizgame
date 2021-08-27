@@ -91,7 +91,7 @@ export const basicQuestionsByCategories = [
   
       new BasicQuestion(731, 3, 'Fővárosom Wellington. Az olvasni tudok aránya 99% és egy nagyon híres filmtrilógia készült nálam a 21. század elején.', 'Új-Zéland'),
       new BasicQuestion(732, 3, 'Nekem van a legtöbb szomszédom a világon.', 'Oroszország (16)'),
-      new BasicQuestion(733, 3, '.', '.'),
+      new BasicQuestion(733, 3, 'Nálam van a világ legtöbb tava', 'Kanada'),
     ]),
     new Category(8, '8 - 1 betű', [
       new BasicQuestion(811, 1, 'Melyik betű felel meg a római 5-ösnek?', 'V'),
@@ -115,21 +115,34 @@ export const basicQuestionsByCategories = [
       new BasicQuestion(922, 2, 'avokádó, paradicsom, hagyma, lime', 'Guacamole'),
       new BasicQuestion(923, 2, 'római saláta, kruton, citromlé, olívaolaj, tojássárgája, mustár, parmezán', 'Cézár saláta'),
   
-      new BasicQuestion(931, 3, '', ''),
-      new BasicQuestion(932, 3, '', ''),
-      new BasicQuestion(933, 3, '', ''),
+      new BasicQuestion(931, 3, 'Bélszín, leveles tészta, gomba', 'Wellington bélszín'),
+      new BasicQuestion(932, 3, 'Mandula, cukor, tojás', 'Macaron'),
+      new BasicQuestion(933, 3, 'Alma, szőlő, dióbél, zellerszár, salátalevél', 'Waldorf saláta'),
     ]),
     new Category(10, '10 - Emberi test', [
-      new BasicQuestion(1011, 1, 'Hasta la vista, baby', 'Terminátor 2'),
-      new BasicQuestion(1012, 1, 'Toto, azt hiszem mar nem Kansasban vagyunk', 'Oz, a csodák csodája'),
-      new BasicQuestion(1013, 1, 'az elet olyan, mint egy doboz bonbon. sosem tudhattod mit veszel ki belole.', 'Forest Gumb'),
+      new BasicQuestion(1011, 1, 'Melyik típusú vérből spriccelne a vér, ha felszúrnánk?', 'artéria/ütőér/verőér'),
+      new BasicQuestion(1012, 1, 'Mik találhatók a gerinccsigolyák között?', 'porckorong'),
+      new BasicQuestion(1013, 1, 'Hol található a legkisebb csontunk?', 'fül'),
   
-      new BasicQuestion(1021, 2, 'Tarts meg az aprót te mocskos állat', 'Reszkessetek betörők!'),
-      new BasicQuestion(1022, 2, 'bator az, aki szembe mer szallni az ellensegeivel, de meg batrabb, ki a barattal száll szembe', 'Harry Potter és a bölcsek köve'),
-      new BasicQuestion(1023, 2, 'Oh, igen. A múlt gyakran fájhat, és elfuthatsz előle, de akár tanulhatsz is belőle.', 'Oroszlánkirály'),
+      new BasicQuestion(1021, 2, 'Melyik szervünk az, amelynek mérete születésünktől fogva nem változik?', 'szem'),
+      new BasicQuestion(1022, 2, 'Hány kromoszóma pár található az ember testi sejtjeiben?', '23'),
+      new BasicQuestion(1023, 2, 'Sorold fel a 3 izomfajtát', 'harántcsíkolt, szív, sima'),
   
-      new BasicQuestion(1031, 3, '', ''),
-      new BasicQuestion(1032, 3, '', ''),
-      new BasicQuestion(1033, 3, '', ''),
+      new BasicQuestion(1031, 3, 'Sorolj fel kettő szervet, amik nélkül életben maradhat az ember', 'gyomor, lép'),
+      new BasicQuestion(1032, 3, 'Nevezz meg 2 neurológiai betegséget!', 'Fejfájás/Sztrók/ALS/Parkinson kór/Demencia/Alzheimer-kór/Tourette-szindróma/epilepszia...'),
+      new BasicQuestion(1033, 3, 'Mi az ideg latin neve?', 'neuron'),
+    ]),
+    new Category(11, '11 - Melyik filmből van az idézet?', [
+      new BasicQuestion(1111, 1, 'Hasta la vista, baby', 'Terminátor 2'),
+      new BasicQuestion(1112, 1, 'Toto, azt hiszem mar nem Kansasban vagyunk', 'Oz, a csodák csodája'),
+      new BasicQuestion(1113, 1, 'Az elet olyan, mint egy doboz bonbon. sosem tudhattod mit veszel ki belole.', 'Forrest Gump'),
+  
+      new BasicQuestion(1121, 2, 'Tarts meg az aprót te mocskos állat', 'Reszkessetek betörők!'),
+      new BasicQuestion(1122, 2, 'bator az, aki szembe mer szallni az ellensegeivel, de meg batrabb, ki a barattal száll szembe', 'Harry Potter és a bölcsek köve'),
+      new BasicQuestion(1123, 2, 'Oh, igen. A múlt gyakran fájhat, és elfuthatsz előle, de akár tanulhatsz is belőle.', 'Oroszlánkirály'),
+  
+      new BasicQuestion(1131, 3, 'Senki sem tökéletes :)', 'Van, aki forrón szereti'),
+      new BasicQuestion(1132, 3, 'Nyisd ki a zsilikaput, HAL!', '2001: Űrodüsszeia'),
+      new BasicQuestion(1133, 3, 'Furcsa sors, hogy ennyi félelmet és kétséget kell elszenvednünk egy ilyen apró dolog, egy ilyen apróság miatt.', 'A Gyűrűk Ura'),
     ])
   ]

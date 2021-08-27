@@ -10,7 +10,7 @@ export class ApiHttpService {
 
   private readonly clientId = "08fff13cd9cf41a6b877c71ffd33e914";
   private readonly clientSecret = "d65439d38e974d66ace76d0968e1f516";
-  private readonly redirectUri = "http://localhost:4200/game";
+  private readonly redirectUri = "http://noncsi-quizgame.herokuapp.com/game";
 
   // urls
   private readonly urlTOKEN = "https://accounts.spotify.com/api/token"

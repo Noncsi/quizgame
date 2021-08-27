@@ -72,4 +72,7 @@ export const flags : FlagQuestion[] = [
 
     new FlagQuestion(67, 'Australia', 'AU'),
     new FlagQuestion(68, 'New Zealand', 'NZ'),
+
+    new FlagQuestion(69, 'Israel', 'IL'),
+    new FlagQuestion(70, 'Greenlans', 'GL'),
 ]
