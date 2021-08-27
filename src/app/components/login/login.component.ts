@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   private readonly clientId = "08fff13cd9cf41a6b877c71ffd33e914";
-  private readonly redirectUri = "http://localhost:4200/game";
-  private readonly scopes = // seperate them with space
+  private readonly redirectUri = `http://${environment.production ? 'noncsi-quizgame.herokuapp.com' : 'localhost:4200'}/game`;
+  private readonly scopes = // separate them with space
     "playlist-read-private " +
     "user-read-playback-state " +
     "user-modify-playback-state " +
