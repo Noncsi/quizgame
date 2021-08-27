@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { QuestionType } from 'src/app/question';
+import { Question, QuestionType } from 'src/app/question';
 
 @Component({
   selector: 'app-question-dialog',
@@ -10,14 +10,12 @@ import { QuestionType } from 'src/app/question';
 export class QuestionDialogComponent implements AfterViewInit{ 
 
   QuestionType = QuestionType
-
-    // Workaround for angular component issue #13870
-    disableAnimation = true;
-
+  // Workaround for expendable component animation bug
+  disableAnimation = true;
   
   constructor(
     public dialogRef: MatDialogRef<QuestionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     ngAfterViewInit(): void {
       // timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'

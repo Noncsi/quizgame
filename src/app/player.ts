@@ -1,15 +1,9 @@
 export class Player {
-    id: number;
-    name: string;
-    points: number;
-    isActive: Boolean;
+  name: string;
+  points: number;
 
-    constructor(id: number, name: string, points: number, isActive: Boolean) {
-      this.id = id;
-      this.name = name;
-      this.points = points;
-      this.isActive = isActive;
-    }
+  constructor(name: string, points: number) {
+    this.name = name;
+    this.points = points;
   }
-
-export const players: Player[] = []
+}

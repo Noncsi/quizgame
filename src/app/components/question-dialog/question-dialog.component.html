@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{data.question}}</h2>
-<div *ngIf="data.currentQuestionType == QuestionType.flag">
+<div *ngIf="data.type == QuestionType.flag">
   <mat-dialog-content class="mat-typography">
-    <img src={{data.flagImage}} width="500px">
+    <img src={{data.image}} width="1000px">
   </mat-dialog-content>
 </div>
 <div [@.disabled]="disableAnimation">
@@ -17,17 +17,16 @@
   </mat-expansion-panel>
 </div>
 <mat-dialog-actions align="end">
-  <div *ngIf="data.currentQuestionType == QuestionType.basic">
+  <div *ngIf="data.type == QuestionType.basic">
     <button mat-button [mat-dialog-close]="'correct'">Jó válasz!</button>
   </div>
-  <div *ngIf="data.currentQuestionType == QuestionType.flag">
-    <button mat-button [mat-dialog-close]="'correct'">Eltalálta az elsőt!</button>
-    <button mat-button [mat-dialog-close]="'correct'">Eltalálta a másodikat!</button>
-    <button mat-button [mat-dialog-close]="'reroll'">Nem találta el az elsőt, újrasorolás!</button>
+  <div *ngIf="data.type == QuestionType.flag">
+    <button mat-button [mat-dialog-close]="'correct'">Eltalálta!</button>
+    <button mat-button [mat-dialog-close]="'reroll_flag'">Nem találta el az elsőt, újrasorolás!</button>
   </div>
-  <div *ngIf="data.currentQuestionType == QuestionType.song">
+  <div *ngIf="data.type == QuestionType.song">
     <button mat-button [mat-dialog-close]="'correct'">Eltalálta mindkettőt!</button>
-    <button mat-button [mat-dialog-close]="'correct'">Eltalálta az egyiket!</button>
+    <button mat-button [mat-dialog-close]="'correct_one'">Eltalálta az egyiket!</button>
   </div>
   <button mat-button [mat-dialog-close]="'incorrect'">Nem jó válasz, pontlevonás!</button>
 </mat-dialog-actions>

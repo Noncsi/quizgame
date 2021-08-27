@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
@@ -48,7 +48,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+  ],
   bootstrap: [AppComponent],
   entryComponents: [QuestionDialogComponent]
 })
